@@ -9,21 +9,22 @@ import { Room } from "@prisma/client";
 
 async function checkBeforePostBooking(userId: number, roomId: number) {
   const enrollment = await enrollmentRepository.findWithAddressByUserId(userId);
+ 
   if (!enrollment) {
     throw notFoundError();
   }
   const ticket = await ticketRepository.findTicketByEnrollmentId(enrollment.id);
-  
+ 
   if (!ticket || ticket.status === "RESERVED" || ticket.TicketType.isRemote || !ticket.TicketType.includesHotel) {
     throw cannotPostBookingError();
   }
-
+  
   await checkRoomAvailability(roomId);
 }
 
 async function checkRoomAvailability(roomId: number) {
   const room = await roomRepository.getRoomById(roomId);
-
+ 
   if(!room) {
     throw notFoundError();
   }
@@ -46,10 +47,10 @@ async function listReserve(userId: number): Promise<BookingId & {Room: Room}> {
   return reservation;
 }
 
-async function createReserve(roomId: number, userId: number) {
+async function createReserve(userId: number, roomId: number ) {
   await checkBeforePostBooking(userId, roomId);
-  
-  const created = await bookingRepository.createReserve({ roomId, userId });
+  const body = { userId, roomId };
+  const created = await bookingRepository.createBooking(body);
   return created;
 }
 

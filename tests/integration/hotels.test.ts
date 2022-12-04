@@ -57,7 +57,7 @@ describe("GET /hotels", () => {
       const enrollment = await createEnrollmentWithAddress(user);
       const ticketType = await createTicketTypeRemote();
       const ticket = await createTicket(enrollment.id, ticketType.id, TicketStatus.PAID);
-      const payment = await createPayment(ticket.id, ticketType.price);
+      await createPayment(ticket.id, ticketType.price);
       //Hoteis no banco
 
       const response = await server.get("/hotels").set("Authorization", `Bearer ${token}`);

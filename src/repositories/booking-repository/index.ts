@@ -10,11 +10,12 @@ async function findReserveByUserId(userId: number): Promise<Booking & {Room: Roo
 
 export type BookingId = Pick<Booking, "id">
 
-async function createReserve(body: {roomId: number, userId: number}) {
+async function createBooking(body: CreateBooking) {
   return prisma.booking.create({
     data: body
   });
 }
+type CreateBooking = Omit<Booking, "id" | "createdAt"| "updatedAt" >
 
 async function updateBookingById(bookingId: number, body: toUpdateBooking) {
   return prisma.booking.update({
@@ -32,7 +33,7 @@ async function findRoomsTakenQuantity(roomId: number) {
 }
 
 const bookingRepository = {
-  findReserveByUserId, createReserve, updateBookingById, findRoomsTakenQuantity
+  findReserveByUserId, createBooking, updateBookingById, findRoomsTakenQuantity
 };
 
 export default bookingRepository;

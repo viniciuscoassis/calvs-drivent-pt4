@@ -22,18 +22,24 @@ export async function getBooking(req: AuthenticatedRequest, res: Response) {
 }
 
 export async function postBooking(req: AuthenticatedRequest, res: Response) {
-  const roomId = req.body.roomId as number;
+  const { roomId } = req.body;
   const userId = req.userId;
 
   try {
-    const created = await bookingService.createReserve(roomId, userId);
-    return res.status(httpStatus.OK).send(created.id);
+    const created = await bookingService.createReserve(userId, Number(roomId));
+    return res.status(httpStatus.OK).send({ bookingId: created.id });
   } catch (error) {
     if (error.name === "NotFoundError") {
       return res.sendStatus(httpStatus.NOT_FOUND);
     }
     if (error.name === "CannotListHotelsError") {
       return res.sendStatus(httpStatus.PAYMENT_REQUIRED);
+    }
+    if(error.name === "fullCapacityReached") {
+      return res.sendStatus(httpStatus.FORBIDDEN);
+    }
+    if(error.name === "cannotPostBookingError") {
+      return res.sendStatus(httpStatus.FORBIDDEN);
     }
     return res.sendStatus(httpStatus.BAD_REQUEST);
   }

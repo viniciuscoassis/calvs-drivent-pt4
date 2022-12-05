@@ -1,6 +1,7 @@
 import { notFoundError } from "@/errors";
 import { cannotPostBookingError } from "@/errors/cannot-post-booking-error";
 import { fullCapacityReachedError } from "@/errors/full-capacity-reached-error";
+import { userNotBookedError } from "@/errors/user-not-booked-error";
 import bookingRepository, { BookingId } from "@/repositories/booking-repository";
 import enrollmentRepository from "@/repositories/enrollment-repository";
 import roomRepository from "@/repositories/room-repository";
@@ -59,7 +60,7 @@ async function changeReserve(bookingId: number, roomId: number, userId: number) 
 
   const reservation = await bookingRepository.findReserveByUserId(userId);
   if(!reservation) {
-    throw notFoundError();
+    throw userNotBookedError();
   }
 
   const updated = await bookingRepository.updateBookingById(bookingId, { userId, roomId, updatedAt: new Date() });

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">14.28% </span>
+                <span class="strong">61.53% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/14</span>
+                <span class='fraction'>8/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">28.57% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>2/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">14.28% </span>
+                <span class="strong">61.53% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/14</span>
+                <span class='fraction'>8/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -107,42 +107,42 @@
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -151,40 +151,40 @@
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >handleApplicationErrors(</span>err: ApplicationError | Error, _req: Request, res: Response) {
-<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "CannotEnrollBeforeStartDateError") {</span>
+export function handleApplicationErrors(err: ApplicationError | Error, _req: Request, res: Response) {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "CannotEnrollBeforeStartDateError") {
 <span class="cstat-no" title="statement not covered" >    return res.status(httpStatus.BAD_REQUEST).send({</span>
       message: err.message,
     });
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "ConflictError" || err.name === "DuplicatedEmailError") {</span>
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "ConflictError" || err.name === "DuplicatedEmailError") {
 <span class="cstat-no" title="statement not covered" >    return res.status(httpStatus.CONFLICT).send({</span>
       message: err.message,
     });
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "InvalidCredentialsError") {</span>
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "InvalidCredentialsError") {
 <span class="cstat-no" title="statement not covered" >    return res.status(httpStatus.UNAUTHORIZED).send({</span>
       message: err.message,
     });
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "UnauthorizedError") {</span>
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "UnauthorizedError") {
 <span class="cstat-no" title="statement not covered" >    return res.status(httpStatus.UNAUTHORIZED).send({</span>
       message: err.message,
     });
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "NotFoundError") {</span>
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "NotFoundError") {
 <span class="cstat-no" title="statement not covered" >    return res.status(httpStatus.NOT_FOUND).send({</span>
       message: err.message,
     });
   }
 &nbsp;
   /* eslint-disable-next-line no-console */
-<span class="cstat-no" title="statement not covered" >  console.error(err.name);</span>
-<span class="cstat-no" title="statement not covered" >  res.status(httpStatus.INTERNAL_SERVER_ERROR).send({</span>
+  // console.error(err.name);
+  res.status(httpStatus.INTERNAL_SERVER_ERROR).send({
     error: "InternalServerError",
     message: "Internal Server Error",
   });
@@ -196,7 +196,7 @@ export function <span class="fstat-no" title="function not covered" >handleAppli
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue Nov 29 2022 17:45:10 GMT-0300 (Brasilia Standard Time)
+                at Mon Dec 05 2022 08:36:16 GMT-0300 (Brasilia Standard Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>

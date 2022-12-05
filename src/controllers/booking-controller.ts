@@ -14,16 +14,15 @@ export async function getBooking(req: AuthenticatedRequest, res: Response) {
     if (error.name === "NotFoundError") {
       return res.sendStatus(httpStatus.NOT_FOUND);
     }
-    if (error.name === "CannotListHotelsError") {
-      return res.sendStatus(httpStatus.PAYMENT_REQUIRED);
-    }
-    return res.sendStatus(httpStatus.BAD_REQUEST);
+    return res.sendStatus(httpStatus.FORBIDDEN);
   }
 }
 
 export async function postBooking(req: AuthenticatedRequest, res: Response) {
   const { roomId } = req.body;
   const userId = req.userId;
+
+  if(!roomId) return res.sendStatus(httpStatus.FORBIDDEN);
 
   try {
     const created = await bookingService.createReserve(userId, Number(roomId));
@@ -32,16 +31,7 @@ export async function postBooking(req: AuthenticatedRequest, res: Response) {
     if (error.name === "NotFoundError") {
       return res.sendStatus(httpStatus.NOT_FOUND);
     }
-    if (error.name === "CannotListHotelsError") {
-      return res.sendStatus(httpStatus.PAYMENT_REQUIRED);
-    }
-    if(error.name === "fullCapacityReached") {
-      return res.sendStatus(httpStatus.FORBIDDEN);
-    }
-    if(error.name === "cannotPostBookingError") {
-      return res.sendStatus(httpStatus.FORBIDDEN);
-    }
-    return res.sendStatus(httpStatus.BAD_REQUEST);
+    return res.sendStatus(httpStatus.FORBIDDEN);
   }
 }
 
@@ -49,19 +39,15 @@ export async function putBooking(req: AuthenticatedRequest, res: Response) {
   const roomId = req.body.roomId;
   const bookingId = req.params.bookingId;
   const userId = req.userId;
-
+  if(!roomId || !bookingId) return res.sendStatus(httpStatus.FORBIDDEN);
   try {
     const updated = await bookingService.changeReserve(Number(bookingId), roomId, userId);
 
-    return res.status(httpStatus.OK).send(updated.id);
+    return res.status(httpStatus.OK).send({ bookingId: updated.id });
   } catch (error) {
     if (error.name === "NotFoundError") {
       return res.sendStatus(httpStatus.NOT_FOUND);
     }
-    if (error.name === "CannotListHotelsError") {
-      return res.sendStatus(httpStatus.PAYMENT_REQUIRED);
-    }
-    if(error.name === "fullCapacityReached")
-      return res.sendStatus(httpStatus.FORBIDDEN);
+    return res.sendStatus(httpStatus.FORBIDDEN);
   }
 }
